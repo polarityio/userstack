@@ -40,13 +40,13 @@
     "proxy": ""
   },
   "logging": {
-    "level": "trace"
+    "level": "info"
   },
   "options": [
     {
       "key": "accessKey",
-      "name": "Access Key",
-      "description": "Your Userstack Access Key",
+      "name": "Userstack API Access Key",
+      "description": "Your Userstack API Access Key",
       "default": "",
       "type": "password",
       "userCanEdit": false,

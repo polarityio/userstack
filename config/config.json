@@ -1,4 +1,5 @@
 {
+  "polarityIntegrationUuid": "97a711c0-8cc5-11f0-9bb6-ed6ace4fd0d8",
   "name": "Userstack",
   "acronym": "US",
   "description": "View information about User Agent Strings using the Userstack API",

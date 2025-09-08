@@ -1,0 +1,11 @@
+{
+  "main": "./integration.js",
+  "name": "userstack",
+  "version": "3.0.0",
+  "private": true,
+  "author": "ThreatConnect",
+  "dependencies": {
+    "async": "^3.2.6",
+    "postman-request": "^2.88.1-postman.43"
+  }
+}

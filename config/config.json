@@ -1,0 +1,56 @@
+{
+  "name": "Userstack",
+  "acronym": "US",
+  "description": "View information about User Agent Strings using the Userstack API",
+  "dataTypes": [
+    {
+      "type": "custom",
+      "name": "User Agent String",
+      "description": "Matches on possible user agent strings",
+      "editable": false,
+      "enabled": true,
+      "key": "userAgent",
+      "regex": "^(?=.*\\/)[A-Za-z0-9 .;:()_\\-\\/+]+$"
+    }
+  ],
+  "customTypes": [
+    {
+      "key": "userAgent",
+      "regex": "^(?=.*\\/)[A-Za-z0-9 .;:()_\\-\\/+]+$"
+    }
+  ],
+  "onDemandOnly": true,
+  "defaultColor": "light-gray",
+  "styles": [
+    "./styles/styles.less"
+  ],
+  "block": {
+    "component": {
+      "file": "./components/block.js"
+    },
+    "template": {
+      "file": "./templates/block.hbs"
+    }
+  },
+  "request": {
+    "cert": "",
+    "key": "",
+    "passphrase": "",
+    "ca": "",
+    "proxy": ""
+  },
+  "logging": {
+    "level": "trace"
+  },
+  "options": [
+    {
+      "key": "accessKey",
+      "name": "Access Key",
+      "description": "Your Userstack Access Key",
+      "default": "",
+      "type": "password",
+      "userCanEdit": false,
+      "adminOnly": true
+    }
+  ]
+}

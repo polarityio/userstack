@@ -24,9 +24,22 @@ const doLookup = async (entities, options, cb) => {
 
   entities.forEach((entity) => {
     tasks.push(async () => {
-      const searchResult = await searchUserAgent(entity, options);
-      const searchResultObject = createResultObject(entity, searchResult, options);
-      lookupResults.push(searchResultObject);
+      if (options.showSearchPrompt) {
+        lookupResults.push({
+          isVolatile: true,
+          entity,
+          data: {
+            summary: ['Possible User Agent String'],
+            details: {
+              showSearchPrompt: true
+            }
+          }
+        });
+      } else {
+        const searchResult = await searchUserAgent(entity, options);
+        const searchResultObject = createResultObject(entity, searchResult, options);
+        lookupResults.push(searchResultObject);
+      }
     });
   });
 
@@ -41,7 +54,25 @@ const doLookup = async (entities, options, cb) => {
   cb(null, lookupResults);
 };
 
+function onMessage(payload, options, cb) {
+  if (payload.action === 'RUN_SEARCH') {
+    doLookup(
+      [payload.entity],
+      {
+        ...options,
+        showSearchPrompt: false
+      },
+      cb
+    );
+  } else {
+    cb({
+      detail: 'Unexpected action received'
+    });
+  }
+}
+
 module.exports = {
   startup,
-  doLookup
+  doLookup,
+  onMessage
 };

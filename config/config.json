@@ -52,6 +52,15 @@
       "type": "password",
       "userCanEdit": false,
       "adminOnly": true
+    },
+    {
+      "key": "showSearchPrompt",
+      "name": "Show Search Prompt",
+      "description": "If enabled, the integration will prompt the user before running a search. It is recommended to leave this enabled unless you are using a paid Userstack account to prevent exhausting your lookups. Defaults to true.",
+      "default": true,
+      "type": "boolean",
+      "userCanEdit": false,
+      "adminOnly": true
     }
   ]
 }

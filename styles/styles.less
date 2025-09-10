@@ -1,0 +1,31 @@
+@disclaimer-color: #B0CBFF;
+
+.message-box {
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+  margin-left: -10px;
+  padding: 5px;
+  background-color: #eaeaea;
+
+  .btn {
+    height: auto;
+    box-sizing: border-box;
+    width: 100px;
+  }
+}
+
+.chat-bubble {
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 35px;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  &.disclaimer {
+    border: 1px solid darken(@disclaimer-color, 10%);
+    border-bottom: 2px solid darken(@disclaimer-color, 10%);
+    background-color: lighten(@disclaimer-color, 10%);
+    white-space: normal;
+  }
+}

@@ -8,16 +8,16 @@
       "type": "custom",
       "name": "User Agent String",
       "description": "Matches on possible user agent strings",
-      "editable": false,
+      "editable": true,
       "enabled": true,
       "key": "userAgent",
-      "regex": "^(?=.*\\/)[A-Za-z0-9 .;:()_\\-\\/+]+$"
+      "regex": "^(?=.{1,512}$)(?=.*\\b[!#$%&'*+.^_`|~0-9A-Za-z-]+\\/[!#$%&'*+.^_`|~0-9A-Za-z.-]+)[\\x20-\\x7E]+$"
     }
   ],
   "customTypes": [
     {
       "key": "userAgent",
-      "regex": "^(?=.*\\/)[A-Za-z0-9 .;:()_\\-\\/+]+$"
+      "regex": "^(?=.{1,512}$)(?=.*\\b[!#$%&'*+.^_`|~0-9A-Za-z-]+\\/[!#$%&'*+.^_`|~0-9A-Za-z.-]+)[\\x20-\\x7E]+$"
     }
   ],
   "onDemandOnly": true,
@@ -50,6 +50,15 @@
       "description": "Your Userstack API Access Key",
       "default": "",
       "type": "password",
+      "userCanEdit": false,
+      "adminOnly": true
+    },
+    {
+      "key": "showSearchPrompt",
+      "name": "Show Search Prompt",
+      "description": "If enabled, the integration will prompt the user before running a search. It is recommended to leave this enabled unless you are using a paid Userstack account to prevent exhausting your lookups. Defaults to true.",
+      "default": true,
+      "type": "boolean",
       "userCanEdit": false,
       "adminOnly": true
     }

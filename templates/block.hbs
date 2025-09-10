@@ -1,166 +1,194 @@
-<h1 class="p-title">User Agent Info</h1>
-<div>
-  <span class="p-key">Type: </span>
-  <span class="p-value">{{useragent.type}}</span>
-</div>
-{{#if useragent.brand}}
-  <div>
-    <span class="p-key">Brand: </span>
-    <span class="p-value">{{useragent.brand}}</span>
-  </div>
-{{/if}}
-{{#if useragent.name}}
-  <div>
-    <span class="p-key">Name: </span>
-    <span class="p-value">{{useragent.name}}</span>
-  </div>
-{{/if}}
-{{#if useragent.url}}
-  <div>
-    <span class="p-key">URL: </span>
-    <span class="p-value"><a href="{{useragent.url}}" class="p-link">{{useragent.url}}</a></span>
-  </div>
+{{#if block._state.errorMessage}}
+  <div class="alert alert-danger mt-1 onmessage-error">{{block._state.errorMessage}}</div>
 {{/if}}
 
-
-{{#if (or useragent.os.name useragent.os.code useragent.os.url useragent.os.family useragent.os.family_code useragent.os.family_vendor)}}
-  <h1 class="p-title">Operating System</h1>
-  {{#if useragent.os.name}}
-    <div>
-      <span class="p-key">Name: </span>
-      <span class="p-value">{{useragent.os.name}}</span>
-    </div>
-  {{/if}}
-  {{#if useragent.os.code}}
-    <div>
-      <span class="p-key">Code: </span>
-      <span class="p-value">{{useragent.os.code}}</span>
-    </div>
-  {{/if}}
-  {{#if useragent.os.url}}
-    <div>
-      <span class="p-key">URL: </span>
-      <span class="p-value"><a href="{{useragent.os.url}}" class="p-link">{{useragent.os.url}}</a></span>
-    </div>
-  {{/if}}
-  {{#if useragent.os.family}}
-    <div>
-      <span class="p-key">Family: </span>
-      <span class="p-value">{{useragent.os.family}}</span>
-    </div>
-  {{/if}}
-  {{#if useragent.os.family_code}}
-    <div>
-      <span class="p-key">Family Code: </span>
-      <span class="p-value">{{useragent.os.family_code}}</span>
-    </div>
-  {{/if}}
-  {{#if useragent.os.family_vendor}}
-    <div>
-      <span class="p-key">Family Vendor: </span>
-      <span class="p-value">{{useragent.os.family_vendor}}</span>
-    </div>
-  {{/if}}
-{{/if}}
-
-{{#if useragent.device}}
-  <h1 class="p-title">Device</h1>
-  {{#if (or useragent.device.is_mobile_device (eq useragent.device.is_mobile_device false))}}
-    <div>
-      <span class="p-key">Is Mobile Device: </span>
-      <span class="p-value">
-        {{#if useragent.device.is_mobile_device}}
-          Yes
-        {{else}}
-          No
-        {{/if}}
-      </span>
-    </div>
-  {{/if}}
-  {{#if useragent.device.name}}
-    <div>
-      <span class="p-key">Name: </span>
-      <span class="p-value">{{useragent.device.name}}</span>
-    </div>
-  {{/if}}
-  {{#if useragent.device.type}}
-    <div>
-      <span class="p-key">Type: </span>
-      <span class="p-value">{{useragent.device.type}}</span>
-    </div>
-  {{/if}}
-  {{#if useragent.device.brand}}
+{{#if details.showSearchPrompt}}
+  <div class="mt-2 chat-bubble disclaimer">
+    Click the <strong>Search</strong> button to search Userstack for User Agent information on this possible User Agent string.
+  </div>
+  <div class="message-box w-100 d-flex justify-content-end">
+    <button
+      disabled={{runningSearch}}
+      {{action "runSearch"}}
+      class="btn btn-outline-secondary ml-1"
+      type="button"
+    >
+      {{#if state.runningSearch}}
+        {{fa-icon icon="spinner-third" fixedWidth=true spin=true}}
+      {{else}}
+        Search
+      {{/if}}
+    </button>
+  </div>
+{{else if details.noResults}}
+  <div>
+    No results found for user agent string.
+  </div>  
+{{else}}
+  <h1 class="p-title">User Agent Info</h1>
+  <div>
+    <span class="p-key">Type: </span>
+    <span class="p-value">{{useragent.type}}</span>
+  </div>
+  {{#if useragent.brand}}
     <div>
       <span class="p-key">Brand: </span>
-      <span class="p-value">{{useragent.device.brand}}</span>
+      <span class="p-value">{{useragent.brand}}</span>
     </div>
   {{/if}}
-  {{#if useragent.device.brand_code}}
-    <div>
-      <span class="p-key">Brand Code: </span>
-      <span class="p-value">{{useragent.device.brand_code}}</span>
-    </div>
-  {{/if}}
-  {{#if useragent.device.brand_url}}
-    <div>
-      <span class="p-key">URL: </span>
-      <span class="p-value"><a href="{{useragent.device.brand_url}}" class="p-link">{{useragent.device.brand_url}}</a></span>
-    </div>
-  {{/if}}
-{{/if}}
-
-{{#if useragent.browser}}
-  <h1 class="p-title">Browser</h1>
-  {{#if useragent.browser.name}}
+  {{#if useragent.name}}
     <div>
       <span class="p-key">Name: </span>
-      <span class="p-value">{{useragent.browser.name}}</span>
+      <span class="p-value">{{useragent.name}}</span>
     </div>
   {{/if}}
-  {{#if useragent.browser.version}}
+  {{#if useragent.url}}
     <div>
-      <span class="p-key">Version: </span>
-      <span class="p-value">{{useragent.browser.version}}</span>
+      <span class="p-key">URL: </span>
+      <span class="p-value"><a href="{{useragent.url}}" class="p-link">{{useragent.url}}</a></span>
     </div>
   {{/if}}
-  {{#if useragent.browser.version_major}}
-    <div>
-      <span class="p-key">Version Major: </span>
-      <span class="p-value">{{useragent.browser.version_major}}</span>
-    </div>
-  {{/if}}
-  {{#if useragent.browser.engine}}
-    <div>
-      <span class="p-key">Engine: </span>
-      <span class="p-value">{{useragent.browser.engine}}</span>
-    </div>
-  {{/if}}
-{{/if}}
 
-{{#if useragent.crawler}}
-  <h1 class="p-title">Crawler</h1>
-  {{#if (or useragent.crawler.is_crawler (eq useragent.crawler.is_crawler false))}}
-    <div>
-      <span class="p-key">Is Crawler: </span>
-      <span class="p-value">
-        {{#if useragent.crawler.is_crawler}}
-          Yes
-        {{else}}
-          No
-        {{/if}}
-      </span>
-    </div>
+
+  {{#if (or useragent.os.name useragent.os.code useragent.os.url useragent.os.family useragent.os.family_code useragent.os.family_vendor)}}
+    <h1 class="p-title">Operating System</h1>
+    {{#if useragent.os.name}}
+      <div>
+        <span class="p-key">Name: </span>
+        <span class="p-value">{{useragent.os.name}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.os.code}}
+      <div>
+        <span class="p-key">Code: </span>
+        <span class="p-value">{{useragent.os.code}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.os.url}}
+      <div>
+        <span class="p-key">URL: </span>
+        <span class="p-value"><a href="{{useragent.os.url}}" class="p-link">{{useragent.os.url}}</a></span>
+      </div>
+    {{/if}}
+    {{#if useragent.os.family}}
+      <div>
+        <span class="p-key">Family: </span>
+        <span class="p-value">{{useragent.os.family}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.os.family_code}}
+      <div>
+        <span class="p-key">Family Code: </span>
+        <span class="p-value">{{useragent.os.family_code}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.os.family_vendor}}
+      <div>
+        <span class="p-key">Family Vendor: </span>
+        <span class="p-value">{{useragent.os.family_vendor}}</span>
+      </div>
+    {{/if}}
   {{/if}}
-  {{#if useragent.crawler.category}}
-    <div>
-      <span class="p-key">Category: </span>
-      <span class="p-value">{{useragent.crawler.category}}</span>
-    </div>
+
+  {{#if useragent.device}}
+    <h1 class="p-title">Device</h1>
+    {{#if (or useragent.device.is_mobile_device (eq useragent.device.is_mobile_device false))}}
+      <div>
+        <span class="p-key">Is Mobile Device: </span>
+        <span class="p-value">
+          {{#if useragent.device.is_mobile_device}}
+            Yes
+          {{else}}
+            No
+          {{/if}}
+        </span>
+      </div>
+    {{/if}}
+    {{#if useragent.device.name}}
+      <div>
+        <span class="p-key">Name: </span>
+        <span class="p-value">{{useragent.device.name}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.device.type}}
+      <div>
+        <span class="p-key">Type: </span>
+        <span class="p-value">{{useragent.device.type}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.device.brand}}
+      <div>
+        <span class="p-key">Brand: </span>
+        <span class="p-value">{{useragent.device.brand}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.device.brand_code}}
+      <div>
+        <span class="p-key">Brand Code: </span>
+        <span class="p-value">{{useragent.device.brand_code}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.device.brand_url}}
+      <div>
+        <span class="p-key">URL: </span>
+        <span class="p-value"><a href="{{useragent.device.brand_url}}" class="p-link">{{useragent.device.brand_url}}</a></span>
+      </div>
+    {{/if}}
   {{/if}}
-  {{#if useragent.crawler.last_seen}}
-    <div>
-      <span class="p-key">Last Seen: </span>
-      <span class="p-value">{{useragent.crawler.last_seen}}</span>
-    </div>
+
+  {{#if useragent.browser}}
+    <h1 class="p-title">Browser</h1>
+    {{#if useragent.browser.name}}
+      <div>
+        <span class="p-key">Name: </span>
+        <span class="p-value">{{useragent.browser.name}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.browser.version}}
+      <div>
+        <span class="p-key">Version: </span>
+        <span class="p-value">{{useragent.browser.version}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.browser.version_major}}
+      <div>
+        <span class="p-key">Version Major: </span>
+        <span class="p-value">{{useragent.browser.version_major}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.browser.engine}}
+      <div>
+        <span class="p-key">Engine: </span>
+        <span class="p-value">{{useragent.browser.engine}}</span>
+      </div>
+    {{/if}}
+  {{/if}}
+
+  {{#if useragent.crawler}}
+    <h1 class="p-title">Crawler</h1>
+    {{#if (or useragent.crawler.is_crawler (eq useragent.crawler.is_crawler false))}}
+      <div>
+        <span class="p-key">Is Crawler: </span>
+        <span class="p-value">
+          {{#if useragent.crawler.is_crawler}}
+            Yes
+          {{else}}
+            No
+          {{/if}}
+        </span>
+      </div>
+    {{/if}}
+    {{#if useragent.crawler.category}}
+      <div>
+        <span class="p-key">Category: </span>
+        <span class="p-value">{{useragent.crawler.category}}</span>
+      </div>
+    {{/if}}
+    {{#if useragent.crawler.last_seen}}
+      <div>
+        <span class="p-key">Last Seen: </span>
+        <span class="p-value">{{useragent.crawler.last_seen}}</span>
+      </div>
+    {{/if}}
   {{/if}}
 {{/if}}
